@@ -9,10 +9,10 @@ Calculate Dive Time.
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/grinnellm/BubbleTime/workflows/R-CMD-check/badge.svg)](https://github.com/grinnellm/BubbleTime/actions)
-[![Codecov](https://codecov.io/gh/grinnellm/BubbleTime/branch/master/graph/badge.svg)](https://codecov.io/gh/grinnellm/BubbleTime)
+[![R-CMD-check](https://github.com/grinnellm/BubbleTime/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/grinnellm/BubbleTime/actions/workflows/R-CMD-check.yaml)
+[![Codecov](https://codecov.io/gh/grinnellm/BubbleTime/branch/master/graph/badge.svg)](https://app.codecov.io/gh/grinnellm/BubbleTime?branch=master)
 [![lint](https://github.com/grinnellm/BubbleTime/workflows/lint/badge.svg)](https://github.com/grinnellm/BubbleTime/actions)
-[![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![Version](https://img.shields.io/badge/Version-0.0.0.9000-orange.svg?style=flat-square)](commits/master)
 [![CRAN](https://www.r-pkg.org/badges/version/BubbleTime)](https://CRAN.R-project.org/package=BubbleTime)
 <!-- badges: end -->
@@ -26,7 +26,8 @@ them.
 
 ## Note
 
-The BubbleTime package replaces the DiveTime script.
+The BubbleTime package supersedes the `DiveTime` script. Do not use the
+`DiveTime` script.
 
 ## Installation
 
