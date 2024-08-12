@@ -1,0 +1,17 @@
+# R and Rproject
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# Documentation
+/doc/
+/Meta/
+/inst/PACKAGES.bib
+*.bib.bak
+*.html
+
+# Sticker (for now)
+/man/sticker/
+*.jpg
+*.png

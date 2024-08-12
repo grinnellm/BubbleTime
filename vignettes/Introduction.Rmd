@@ -1,0 +1,131 @@
+---
+title: "Introduction to BubbleTime"
+author: "Matthew H. Grinnell"
+date: "`r Sys.Date()`"
+output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+        toc: true
+        number_sections: true
+bibliography: "../inst/PACKAGES.bib"
+csl: "../inst/cjfas.csl"
+link-citations: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to BubbleTime}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+# Set knitr options
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 5.75
+)
+# Set knitr options
+options(knitr.kable.NA = "")
+```
+
+```{r citation, include = FALSE}
+# Write citation file
+knitr::write_bib(x = "BubbleTime", file = here::here("inst", "PACKAGES.bib"))
+```
+
+This vignette shows how to calculate dive time.
+Source code is on the
+[GitHub repository](https://github.com/grinnellm/BubbleTime).
+Load the `BubbleTime` package [@R-BubbleTime] and
+a few other packages to wrangle data and make tables and figures.
+
+```{r libraries, message = FALSE, warning = FALSE}
+# Install the package if required
+# install.packages("remotes")
+# remotes::install_github(repo = "grinnellm/BubbleTime")
+# Load the package
+library(BubbleTime)
+# Suppress dplyr messages re summarise
+options(dplyr.summarise.inform = FALSE)
+```
+
+# Dive time calculations
+
+This section shows two ways to calculate dive times and view results.
+The calculations are the same in both cases;
+the difference is that the second way uses a wrapper
+to run all the functions in one line.
+
+## The long way
+
+First, load dive times from a CSV file.
+In this example I am using the provided data `dives`.
+Note the column names and format in each column.
+Your data should look like this when you load it into **R**.
+See the help file for `dives` for more information.
+
+```{r load_dives}
+# Load dive times from file
+dives_raw <- load_dives(
+  file_path = system.file("extdata", "dives.csv", package = "BubbleTime")
+)
+# Print to screen
+dives_raw
+```
+
+Next, calculate the duration of each dive in minutes.
+
+```{r calc_raw_mins}
+# Calculate raw dive time
+raw_mins <- calc_raw_mins(dat = dives_raw)
+# Print to screen
+raw_mins
+```
+
+Take a look at raw dive times for each diver to check whether
+the data is correct. 
+
+```{r plot_daily_mins}
+# Plot daily dive time
+plot_daily_mins(dat = raw_mins)
+```
+
+Finally, calculate daily dive time in hours.
+
+```{r calc_daily_hrs}
+# Calculate adjusted daily dive time in hours
+daily_hrs <- calc_daily_hrs(dat = raw_mins)
+# Print to screen
+daily_hrs
+```
+
+Again, look at adjusted daily dive times for each diver to check whether
+the data is correct. 
+
+```{r plot_cumulative_hrs}
+# Plot cumulative dive time
+plot_cumulative_hrs(dat = daily_hrs)
+```
+
+## The easy way
+
+Alternately, take the easy route with some help from your `dive_buddy()`.
+This is just a wrapper around the functions above.
+
+```{r dive_buddy_code}
+# Run helper function with included data file
+dive_buddy(
+  file_path = system.file("extdata", "dives.csv", package = "BubbleTime")
+)
+```
+
+You can also run `dive_buddy()` interactively
+(i.e., to find your input file)
+and save the output.
+
+```{r dive_buddy_manual, eval = FALSE}
+# Run helper function interactively and save output (not run in this example)
+dive_buddy(save_plot = TRUE, save_csv = TRUE)
+```
+
+# References

@@ -1,0 +1,92 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd; please edit README.Rmd. -->
+
+# BubbleTime 
+<!-- <img src='man/sticker/sticker.png' align="right" height="250"/> -->
+
+`r read.dcf(file = "DESCRIPTION", fields = "Title")`.
+
+```{r version, echo = FALSE}
+version <- read.dcf(file = "DESCRIPTION", fields = "Version")
+```
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/grinnellm/BubbleTime/workflows/R-CMD-check/badge.svg)](https://github.com/grinnellm/BubbleTime/actions)
+[![Codecov](https://codecov.io/gh/grinnellm/BubbleTime/branch/master/graph/badge.svg)](https://codecov.io/gh/grinnellm/BubbleTime)
+[![lint](https://github.com/grinnellm/BubbleTime/workflows/lint/badge.svg)](https://github.com/grinnellm/BubbleTime/actions)
+[![Lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![Version](https://img.shields.io/badge/Version-`r version`-orange.svg?style=flat-square)](commits/master)
+[![CRAN](https://www.r-pkg.org/badges/version/BubbleTime)](https://CRAN.R-project.org/package=BubbleTime)
+<!-- badges: end -->
+
+## Description
+
+`r read.dcf(file = "DESCRIPTION", fields = "Description")`
+
+## Note
+
+The BubbleTime package replaces the DiveTime script.
+
+## Installation
+
+Install the BubbleTime package from
+[GitHub](https://github.com/grinnellm/BubbleTime) with:
+
+```{r install, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github(repo = "grinnellm/BubbleTime")
+```
+
+## Example
+
+This example shows how to calculate adjusted daily dive time
+from a table of dive start and end times.
+This table is included in the package data;
+use it as a template to ensure you set up your input file the same way.
+First, load the BubbleTime package in the usual way.
+
+```{r load}
+library(BubbleTime)
+```
+
+Then, calculate dive times.
+
+```{r dive_buddy}
+# Calculate dive times
+dive_times <- dive_buddy(
+  file_path = system.file("extdata", "dives.csv", package = "BubbleTime")
+)
+# Print adjusted daily hours
+dive_times$daily_hrs
+```
+
+## Additional information
+
+Build the manual
+
+```{r manual, eval = FALSE}
+devtools::build_manual(pkg = ".", path = here("doc"))
+```
+
+and open the file ``r paste0("./doc/BubbleTime_", version, ".pdf")``.
+In addition, there is a vignette with an example workflow;
+build the vignette
+
+```{r vignette, eval = FALSE}
+devtools::build_vignettes(pkg = ".")
+```
+
+and open the file `./doc/Introduction.html`.
+
+## Contributing
+
+If you would like to contribute to this project,
+please start by reading the [guide to contributing](CONTRIBUTING.md).
+This applies to bug reports, documentation, feature requests, mistakes,
+and other issues.
+Note that this project is released with a
+[contributor code of conduct](CONDUCT.md).
+By participating in this project you agree to abide by its terms.

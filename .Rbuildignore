@@ -1,0 +1,12 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^doc$
+^Meta$
+^data-raw$
+^\.github$
+^README.Rmd$
+^man-roxygen$
+^CONDUCT.md$
+^CONTRIBUTING.md$
+^CORRIGENDUM.md$
+^make.R$
