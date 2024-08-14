@@ -17,7 +17,7 @@
 #' @family calculations functions
 #' @export
 #' @examples
-#' temp <- tibble::tribble( # TODO: Not working
+#' temp <- tibble::tribble(
 #'   ~Date,        ~Transect, ~Diver, ~Start,  ~End,
 #'   "2024-05-02", 1,         "Matt", "08:00", "08:45",
 #'   "2024-05-02", 2,         "Matt", "11:30", "12:15",
