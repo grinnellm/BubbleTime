@@ -11,15 +11,16 @@ Tibble with rows for transects and columns for divers.
 dives
 }
 \description{
-Table with example dive times. The first column is date (YYYY-MM-DD), the
+Table with example dive times. The first column is date (YYYY-MM-DD) and the
 second column is transect. Other columns are start and end times (HH:MM) in
 24-hour clock for each diver. Column names must be in the format "Matt.Start"
 and "Matt.End."
 }
 \note{
-Dives that span midnight must be entered as two separate dives: the
-first part of the dive (before midnight) on the first day and the second
-part (after midnight) on the next day. See dive times for Transect 119.
+Enter dive times in this format to calculate dive time on a survey.
+Dives that span midnight must be entered as two separate dives: the first
+part of the dive (before midnight) on the first day and the second part
+(after midnight) on the next day (see dive times for Transect 119).
 }
 \examples{
 dives
@@ -28,7 +29,8 @@ dives
 \code{\link[=load_dives]{load_dives()}}
 
 Other data: 
-\code{\link{dive_pars}}
+\code{\link{dive_pars}},
+\code{\link{dives_simple}}
 }
 \concept{data}
 \keyword{datasets}
