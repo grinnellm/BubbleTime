@@ -41,7 +41,8 @@ dive_pars
 \code{\link[=adjust_time]{adjust_time()}} \code{\link[=calc_period]{calc_period()}}
 
 Other data: 
-\code{\link{dives}}
+\code{\link{dives}},
+\code{\link{dives_simple}}
 }
 \concept{data}
 \keyword{datasets}

@@ -1,6 +1,23 @@
+#' Dive times (simple).
+#'
+#' Table with example dive times (simplified). The first column is date
+#' (YYYY-MM-DD), the second column is transect, the third column is diver, and
+#' the last two columns are start and end times.
+#'
+#' @format Tibble with rows for transects.
+#' @docType data
+#' @importFrom Rdpack reprompt
+#' @seealso [calc_period()]
+#' @family data
+#' @note This is for internal use/tests only; do not use this format to
+#'   calculate dive time on a survey.
+#' @examples
+#' dives_simple
+"dives_simple"
+
 #' Dive times.
 #'
-#' Table with example dive times. The first column is date (YYYY-MM-DD), the
+#' Table with example dive times. The first column is date (YYYY-MM-DD) and the
 #' second column is transect. Other columns are start and end times (HH:MM) in
 #' 24-hour clock for each diver. Column names must be in the format "Matt.Start"
 #' and "Matt.End."
@@ -10,9 +27,10 @@
 #' @importFrom Rdpack reprompt
 #' @seealso [load_dives()]
 #' @family data
-#' @note Dives that span midnight must be entered as two separate dives: the
-#'   first part of the dive (before midnight) on the first day and the second
-#'   part (after midnight) on the next day. See dive times for Transect 119.
+#' @note Enter dive times in this format to calculate dive time on a survey.
+#'   Dives that span midnight must be entered as two separate dives: the first
+#'   part of the dive (before midnight) on the first day and the second part
+#'   (after midnight) on the next day (see dive times for Transect 119).
 #' @examples
 #' dives
 "dives"

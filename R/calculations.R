@@ -9,7 +9,7 @@
 #'   From [dive_pars].
 #' @importFrom Rdpack reprompt
 #' @importFrom dplyr group_by summarise ungroup full_join
-#' @importFrom lubridate duration as.duration
+#' @importFrom lubridate time_length
 #' @return Numeric. Dive period indicating if the dive is in the first (1),
 #'   second (2), or third (3) period of the day where periods start at the start
 #'   of the first dive of the day.
@@ -17,33 +17,20 @@
 #' @family calculations functions
 #' @export
 #' @examples
-#' temp <- tibble::tribble(
-#'   ~Date,        ~Transect, ~Diver, ~Start,  ~End,
-#'   "2024-05-02", 1,         "Matt", "08:00", "08:45",
-#'   "2024-05-02", 2,         "Matt", "11:30", "12:15",
-#'   "2024-05-02", 3,         "Matt", "16:00", "18:00",
-#'   "2024-05-03", 11,        "Matt", "09:00", "09:45",
-#'   "2024-05-03", 12,        "Matt", "10:30", "11:15"
-#' )
-#' dat <- dplyr::mutate(temp,
-#'   Date = as.Date(Date),
-#'   Transect = as.character(Transect),
-#'   Start = lubridate::hm(Start),
-#'   End = lubridate::hm(End)
-#' )
-#' df <- dplyr::mutate(dat, Period = calc_period(dat))
+#' calc_period(dat = dives_simple)
 calc_period <- function(dat, dive_period = dive_pars$dive_period) {
   # First dive of the day for each diver
   first_dive <- dat %>%
+    mutate(DateTime = Date + Start) %>%
     group_by(Date, Diver) %>%
-    summarise(First = min(Start)) %>%
+    summarise(First = min(DateTime)) %>%
     ungroup()
-  # Append first dive to dives
-  dat <- full_join(x = dat, y = first_dive, by = c("Date", "Diver"))
+  # Append first dive to dives and convert end time of dive
+  dat <- dat %>%
+    full_join(y = first_dive, by = c("Date", "Diver")) %>%
+    mutate(End = Date + End)
   # Duration since start of first dive
-  time_duration <- duration(as.duration(dat$End) - as.duration(dat$First))
-  # Duration in hours
-  time_hrs <- as.numeric(time_duration, "hours")
+  time_hrs <- time_length(x = dat$End - dat$First, unit = "hour")
   # Round up to determine period
   res <- ceiling(time_hrs / dive_period)
   # Return results
@@ -181,7 +168,7 @@ adjust_time <- function(
 #' raw_mins <- calc_raw_mins(dat = dives)
 #' calc_daily_hrs(dat = raw_mins)
 calc_daily_hrs <- function(dat, ...) {
-  # Sum dive time by day and period (minutes) TODO: Include `Period`
+  # Sum dive time by day and period (minutes)
   daily_mins <- dat %>%
     group_by(Date, Diver, Period) %>%
     summarise(Time = sum(Time)) %>%

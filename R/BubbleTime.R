@@ -7,8 +7,9 @@
 #' Calculations are based on the collective agreement for biologists (see
 #' [dive_pars]).
 #'
-#' @section Data: The data are dive times ([dives]) and dive parameters
-#'   ([dive_pars]).
+#' @section Data: The data are dive times ([dives]), dive parameters
+#'   ([dive_pars]), and simplified dive times ([dives_simple]) for internal
+#'   use/testing.
 #'
 #' @section Loaders functions: The loaders functions are [load_dives()].
 #'

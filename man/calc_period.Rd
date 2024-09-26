@@ -23,21 +23,7 @@ Determine the dive period according to the collective agreement for
 biologists (see \link{dive_pars}).
 }
 \examples{
-temp <- tibble::tribble(
-  ~Date,        ~Transect, ~Diver, ~Start,  ~End,
-  "2024-05-02", 1,         "Matt", "08:00", "08:45",
-  "2024-05-02", 2,         "Matt", "11:30", "12:15",
-  "2024-05-02", 3,         "Matt", "16:00", "18:00",
-  "2024-05-03", 11,        "Matt", "09:00", "09:45",
-  "2024-05-03", 12,        "Matt", "10:30", "11:15"
-)
-dat <- dplyr::mutate(temp,
-  Date = as.Date(Date),
-  Transect = as.character(Transect),
-  Start = lubridate::hm(Start),
-  End = lubridate::hm(End)
-)
-df <- dplyr::mutate(dat, Period = calc_period(dat))
+calc_period(dat = dives_simple)
 }
 \seealso{
 \link{dive_pars}

@@ -17,8 +17,9 @@ Calculations are based on the collective agreement for biologists (see
 \link{dive_pars}).
 }
 \section{Data}{
- The data are dive times (\link{dives}) and dive parameters
-(\link{dive_pars}).
+ The data are dive times (\link{dives}), dive parameters
+(\link{dive_pars}), and simplified dive times (\link{dives_simple}) for internal
+use/testing.
 }
 
 \section{Loaders functions}{
