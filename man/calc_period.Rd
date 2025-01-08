@@ -4,14 +4,14 @@
 \alias{calc_period}
 \title{Determine dive period.}
 \usage{
-calc_period(dat, dive_period = dive_pars$dive_period)
+calc_period(dat, period = dive_pars$dive_period)
 }
 \arguments{
 \item{dat}{Tibble. Columns for date, diver, as well as start and end times
 for each dive. See \code{\link[=calc_raw_mins]{calc_raw_mins()}}.}
 
-\item{dive_period}{Numeric. Number of hours that constitutes a dive period.
-From \link{dive_pars}.}
+\item{period}{Numeric. Number of hours that constitutes a dive period. From
+\link{dive_pars}.}
 }
 \value{
 Numeric. Dive period indicating if the dive is in the first (1),

@@ -5,8 +5,8 @@
 #'
 #' @param dat Tibble. Columns for date, diver, as well as start and end times
 #'   for each dive. See [calc_raw_mins()].
-#' @param dive_period Numeric. Number of hours that constitutes a dive period.
-#'   From [dive_pars].
+#' @param period Numeric. Number of hours that constitutes a dive period. From
+#'   [dive_pars].
 #' @importFrom Rdpack reprompt
 #' @importFrom dplyr group_by summarise ungroup full_join
 #' @importFrom lubridate time_length
@@ -18,7 +18,7 @@
 #' @export
 #' @examples
 #' calc_period(dat = dives_simple)
-calc_period <- function(dat, dive_period = dive_pars$dive_period) {
+calc_period <- function(dat, period = dive_pars$dive_period) {
   # First dive of the day for each diver
   first_dive <- dat %>%
     mutate(DateTime = Date + Start) %>%
@@ -32,7 +32,7 @@ calc_period <- function(dat, dive_period = dive_pars$dive_period) {
   # Duration since start of first dive
   time_hrs <- time_length(x = dat$End - dat$First, unit = "hour")
   # Round up to determine period
-  res <- ceiling(time_hrs / dive_period)
+  res <- ceiling(time_hrs / period)
   # Return results
   return(res)
 } # End calc_period function
